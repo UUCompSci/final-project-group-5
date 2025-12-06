@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Mkcoo\\Downloads\\final-project-group-5-master\\final-project-group-5-master\\Evolve\\Evolve.csproj": {}
+    "C:\\Users\\justj\\OneDrive\\Desktop\\final-project-group-5\\Evolve\\Evolve.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Mkcoo\\Downloads\\final-project-group-5-master\\final-project-group-5-master\\Evolve\\Evolve.csproj": {
+    "C:\\Users\\justj\\OneDrive\\Desktop\\final-project-group-5\\Evolve\\Evolve.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Mkcoo\\Downloads\\final-project-group-5-master\\final-project-group-5-master\\Evolve\\Evolve.csproj",
+        "projectUniqueName": "C:\\Users\\justj\\OneDrive\\Desktop\\final-project-group-5\\Evolve\\Evolve.csproj",
         "projectName": "Evolve",
-        "projectPath": "c:\\Users\\Mkcoo\\Downloads\\final-project-group-5-master\\final-project-group-5-master\\Evolve\\Evolve.csproj",
-        "packagesPath": "C:\\Users\\Mkcoo\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Mkcoo\\Downloads\\final-project-group-5-master\\final-project-group-5-master\\Evolve\\obj\\",
+        "projectPath": "C:\\Users\\justj\\OneDrive\\Desktop\\final-project-group-5\\Evolve\\Evolve.csproj",
+        "packagesPath": "C:\\Users\\justj\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\justj\\OneDrive\\Desktop\\final-project-group-5\\Evolve\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Mkcoo\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\justj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
