@@ -78,6 +78,37 @@ public class Carnivore : LivingThing
   }
 }
 
+public class Omnivore : LivingThing
+{
+  public Omnivore(string name) : base(name) {}
+
+  public override void Eat(FoodType food)
+  {
+    Size++;
+  }
+
+  public override void Eat(LivingThing other)
+  {
+    if (other is LivingThing creature)
+    {
+      // Must be larger to eat it
+      if (this.Size <= creature.Size)
+          throw new InvalidOperationException(
+              $"{Name} is not large enough to eat {creature.Name}."
+          );
+
+      // Eating successful
+      int gained = creature.Size;    // Amount gained from eating
+      this.Size += gained;
+
+      Console.WriteLine($"{Name} ate {creature.Name} and gained {gained} size!");
+      return;
+    }
+
+    throw new InvalidOperationException($"{Name} cannot eat that.");
+  }
+}
+
 // EATING
 public enum FoodType
 {

@@ -117,10 +117,13 @@ namespace CellWorld
             return int.TryParse(digits, out int num) ? num : 0;
         }
     }
+
     class Program
     {
         static void Main(string[] args)
         {
+            SaveLoad.EnsureDatabase();
+
             List<LivingThing> allCells = new List<LivingThing>();
             List<Cluster> clusters = new List<Cluster>();
             LivingThing? player = null;
@@ -163,6 +166,15 @@ namespace CellWorld
                         Console.WriteLine("Exiting simulation...");
                         break;
 
+                    case ConsoleKey.V:
+                        SaveLoad.SaveWorld(allCells, clusters);
+                        break;
+
+                    case ConsoleKey.L:
+                        (allCells, clusters) = SaveLoad.LoadWorld();
+                        player = allCells.First(c => c.Name == player.Name); 
+                        break;                        
+
                     default:
                         Console.WriteLine("Invalid key.");
                         break;
@@ -179,6 +191,8 @@ namespace CellWorld
             Console.WriteLine(" [T] Advance Turn");
             Console.WriteLine(" [S] Stats");
             Console.WriteLine(" [Q] Quit");
+            Console.WriteLine(" [V] Save World");
+            Console.WriteLine(" [L] Load World");
         }
 
         static void CreateInitialPlayerCell(ref LivingThing? player, List<LivingThing> allCells)
