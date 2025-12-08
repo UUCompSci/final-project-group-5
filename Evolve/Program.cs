@@ -75,21 +75,6 @@ namespace CellWorld
         }
     }
 
-    class Omnivore : LivingThing
-    {
-        public Omnivore(string name) : base(name) { }
-        public override void Eat(FoodType food)
-        {
-            if (food == FoodType.Plant) Size++;
-        }
-        public override void Eat(LivingThing other)
-        {
-            if (Size <= other.Size) return;
-            int gained = other.Size;
-            Size += gained;
-        }
-    }
-
     class GameHelpers
     {
         private static Random rand = new Random();
@@ -161,19 +146,18 @@ namespace CellWorld
                         }
                         break;
 
+                    case ConsoleKey.V:
+                        SaveLoad.SaveWorld(allCells, clusters, player);
+                        break;
+
+                    case ConsoleKey.L:
+                        (allCells, clusters, player) = SaveLoad.LoadWorld();
+                        break;
+
                     case ConsoleKey.Q:
                         running = false;
                         Console.WriteLine("Exiting simulation...");
                         break;
-
-                    case ConsoleKey.V:
-                        SaveLoad.SaveWorld(allCells, clusters);
-                        break;
-
-                    case ConsoleKey.L:
-                        (allCells, clusters) = SaveLoad.LoadWorld();
-                        player = allCells.First(c => c.Name == player.Name); 
-                        break;                        
 
                     default:
                         Console.WriteLine("Invalid key.");
@@ -190,9 +174,9 @@ namespace CellWorld
             Console.WriteLine("\nAvailable Keys:");
             Console.WriteLine(" [T] Advance Turn");
             Console.WriteLine(" [S] Stats");
-            Console.WriteLine(" [Q] Quit");
             Console.WriteLine(" [V] Save World");
             Console.WriteLine(" [L] Load World");
+            Console.WriteLine(" [Q] Quit");
         }
 
         static void CreateInitialPlayerCell(ref LivingThing? player, List<LivingThing> allCells)
@@ -246,7 +230,7 @@ namespace CellWorld
 
             if (!actionTaken && roll < 0.6)
             {
-                var targets = allCells.Where(c => c != localPlayer && allCells.Contains(c) && localPlayer.Size > c.Size).ToList();
+                var targets = allCells.Where(c => c != localPlayer && localPlayer.Size > c.Size).ToList();
                 if (targets.Count > 0)
                 {
                     LivingThing target = targets.OrderByDescending(c => c.Size).First();
@@ -339,8 +323,7 @@ namespace CellWorld
 
             Console.WriteLine($"Stats -> Health: {health}, Attack: {attack}, Speed: {speed}");
 
-            LivingThing localPlayer = player;
-            var playerClusters = clusters.Where(c => c.Cells.Contains(localPlayer)).ToList();
+            var playerClusters = clusters.Where(c => c.Cells.Contains(player)).ToList();
 
             if (playerClusters.Count == 0) Console.WriteLine("Clusters: None");
             else Console.WriteLine("Clusters: " + string.Join(", ", playerClusters.Select(c => $"{c.Name} (Cluster size: {GameHelpers.ExtractClusterSize(c.Name)})")));

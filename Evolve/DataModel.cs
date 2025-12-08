@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Entities;
+using CellWorld;
 
 namespace DataModel
 {
@@ -19,7 +20,9 @@ namespace DataModel
                 .HasDiscriminator<string>("Type")
                 .HasValue<Herbivore>("Herbivore")
                 .HasValue<Carnivore>("Carnivore")
-                .HasValue<Omnivore>("Omnivore");
+                .HasValue<Omnivore>("Omnivore")
+                .HasValue<Alderbrook>("Alderbrook")
+                .HasValue<AlienDidi>("AlienDidi");
 
             modelBuilder.Entity<Cluster>()
                 .HasMany(c => c.Cells);
