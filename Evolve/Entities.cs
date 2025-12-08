@@ -75,7 +75,7 @@ public class Carnivore : LivingThing
     }
 }
 
-// OMNIVORE
+
 public class Omnivore : LivingThing
 {
     public Omnivore(string name) : base(name) { }
@@ -86,7 +86,7 @@ public class Omnivore : LivingThing
         Size++;
     }
 
-    // Other creature - creature's size added to yours.
+
     public override void Eat(LivingThing other)
     {
         if (this.Size <= other.Size)
@@ -94,7 +94,7 @@ public class Omnivore : LivingThing
                 $"{Name} is not large enough to eat {other.Name}."
             );
 
-        int gained = other.Size; // Amount gained from eating
+        int gained = other.Size; 
         this.Size += gained;
 
         Console.WriteLine($"{Name} ate {other.Name} and gained {gained} size!");
@@ -108,7 +108,7 @@ public enum FoodType
     Meat
 }
 
-// CLUSTER - (HOME)
+
 public class Cluster : BaseEntity
 {
     public Cluster(string name)
@@ -119,10 +119,10 @@ public class Cluster : BaseEntity
 
     public string Name { get; set; }
 
-    // All herbivores and carnivores inside this cluster
+
     public List<LivingThing> Cells { get; private set; }
 
-    // Add a cell to the cluster
+
     public void AddCell(LivingThing cell)
     {
         if (cell == null)
@@ -131,7 +131,7 @@ public class Cluster : BaseEntity
         Cells.Add(cell);
     }
 
-    // Remove a living thing from the cluster
+
     public void RemoveCell(LivingThing cell)
     {
         if (cell == null)

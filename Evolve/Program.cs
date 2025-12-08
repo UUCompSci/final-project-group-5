@@ -152,6 +152,7 @@ namespace CellWorld
 
                     case ConsoleKey.L:
                         (allCells, clusters, player) = SaveLoad.LoadWorld();
+                        hasEvolved = player is CellWorld.Alderbrook || player is CellWorld.AlienDidi;
                         break;
 
                     case ConsoleKey.Q:
