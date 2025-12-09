@@ -3,12 +3,12 @@ namespace Entities;
 // BASE ENTITY
 public abstract class BaseEntity
 {
-    public Guid Id { get; private set; } = Guid.NewGuid();
+    public Guid Id { get; private set; } = Guid.NewGuid(); //Encapsulation, unique private identifier for each entity
     public BaseEntity() { }
 }
 
 // BASE CLASS FOR ALL LIVING THINGS
-public class LivingThing : BaseEntity
+public class LivingThing : BaseEntity // Inheritence from BaseEntity
 {
     public LivingThing(string name)
     {
@@ -37,7 +37,7 @@ public class Herbivore : LivingThing
 {
     public Herbivore(string name) : base(name) { }
 
-    public override void Eat(FoodType food)
+    public override void Eat(FoodType food) //polymorphism, overriding the base class method
     {
         if (food != FoodType.Plant)
             throw new InvalidOperationException($"{Name} can only eat plants");

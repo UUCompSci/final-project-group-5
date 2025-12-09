@@ -1,19 +1,4 @@
-﻿// ===== OBJECT CREATION =====
-
-// Need to create cell objects that are not the player's cell and give them a size and name.
-// Need to create Clusters that contain many cells
-// DO NOT need to create food objects because food is an enum of just "meat" and "plant"
-
-// ===== RUNTIME =====
-
-// Cells can be created through user input. ie. "Create Carnivore: 'Bobby'"
-// Player's cell is size 3 by default.
-// Cells encounter plant and meat food and can choose to eat it
-// Cells can encounter other cells and eat them if carnivores
-// Other Cell's size is then added to the Cell's size
-// Agar.io
-// Cells can encounter Clusters of other cells which they can join the cluster (Eventually that will add them to the cluster in the database)
-// This acts like a "House"
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,7 +66,7 @@ namespace CellWorld
 
         public static LivingThing GenerateRandomCell()
         {
-            string[] randomNames = { "Grax", "Tuli", "Morv", "Keen", "Zovo", "Redd", "Jarn", "Plix", "Vor", "Koda" };
+            string[] randomNames = { "Grax", "Tuli", "Morv", "Keen", "Zovo", "Redd", "Jarn", "Plix", "Vor", "Koda", "Joe" };
             string name = randomNames[rand.Next(randomNames.Length)];
             bool isCarnivore = rand.Next(2) == 0;
             LivingThing newCell = isCarnivore ? new Carnivore(name) : new Herbivore(name);
@@ -147,7 +132,7 @@ namespace CellWorld
                         break;
 
                     case ConsoleKey.V:
-                        SaveLoad.SaveWorld(allCells, clusters, player);
+                        SaveLoad.SaveWorld(allCells, clusters, player!);
                         break;
 
                     case ConsoleKey.L:
@@ -235,6 +220,8 @@ namespace CellWorld
                 if (targets.Count > 0)
                 {
                     LivingThing target = targets.OrderByDescending(c => c.Size).First();
+                    
+                    // BIG POLYMORPHISM EXAMPLE! The Eat method is overridden in each subclass with runtime polymorphism.
 
                     if (localPlayer is Carnivore c)
                     {
